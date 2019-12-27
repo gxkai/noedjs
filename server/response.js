@@ -1,3 +1,4 @@
+const chalk = require('chalk')
 module.exports = async (ctx, next) => {
   try {
       // 调用下一个 middleware
@@ -8,7 +9,8 @@ module.exports = async (ctx, next) => {
       // 如果写在 ctx.body 为空，则使用 state 作为响应
       ctx.body = ctx.body ? ctx.body : {
           code: ctx.state.code !== undefined ? ctx.state.code : 0,
-          data: ctx.state.data !== undefined ? ctx.state.data : {}
+          data: ctx.state.data !== undefined ? ctx.state.data : {},
+          duration: ctx.state.duration
       }
   } catch (e) {
       // catch 住全局的错误信息
@@ -20,5 +22,7 @@ module.exports = async (ctx, next) => {
           code: -1,
           error: e && e.message ? e.message : e.toString()
       }
+  } finally {
+      console.log(ctx.body)
   }
 }

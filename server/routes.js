@@ -1,9 +1,9 @@
 const router = require('koa-router')({
-  prefix: '/api'
+  prefix: '/'
 })
 
 const controllers = require('./controllers')
 
-router.get('/html', controllers.html)
+router.get('/', controllers.sites)
 
 module.exports = router

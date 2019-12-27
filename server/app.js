@@ -1,10 +1,12 @@
 const Koa = require('koa')
 const bodyparser = require('koa-bodyparser')
 const response = require('./response.js')
+const duration = require('./duration.js')
 const app = new Koa()
 
 // 使用响应处理中间件
 app.use(response)
+app.use(duration)
 
 // 解析请求体
 app.use(bodyparser())
